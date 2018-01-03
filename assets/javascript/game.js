@@ -138,4 +138,39 @@ var countries = [
 	}
 ];
 
+var winCount = 0;
+var lettersGuessed = [];
+var remaining = 9;
 
+
+function randomCountry() {
+	currentCountry = countries[math.floor(math.random() * countries.length)].name;
+	keys = currentCountry.split("");
+
+}
+
+
+
+
+document.onkeyup = function(event) {
+	userChoice = (event.key).toLowerCase();
+};
+
+
+
+
+function restar()  {
+
+}
+
+function winTracker() {
+	var wins = document.getElementById("wins");
+	winCount++;
+	wins.innerHTML = winCount; 
+}
+
+function guesses() {
+	var guessesRemaining = document.getElementById("guessesRemaining");
+	remaining--;
+	guessesRemaining.innerHTML = remaining; 
+}
