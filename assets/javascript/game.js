@@ -172,5 +172,15 @@ function winTracker() {
 function guesses() {
 	var guessesRemaining = document.getElementById("guessesRemaining");
 	remaining--;
-	guessesRemaining.innerHTML = remaining; 
+	guessesRemaining.innerHTML = remaining;
+	if (remaining === 3) {
+		alert("3 guesses remaining!");
+	} else if (remaining === 2) {
+		alert("2 more chances!!");
+	} else if (remaining === 1) {
+		alert("Last chance!!!");
+	} else if (remaining === 0) {
+		alert ("You lost");
+	}
+	
 }
