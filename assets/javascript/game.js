@@ -1,6 +1,5 @@
-var userKey = [
-	"m", "n", "b", "v", "c", "x", "z", "a", "s", "d", "f", "g", "h", "j", "k", "l", "p", "o", "i", "u", "y", "t", "r", "e", "w", "q", " "
-];
+
+var userKey = ["m", "n", "b", "v", "c", "x", "z", "a", "s", "d", "f", "g", "h", "j", "k", "l", "p", "o", "i", "u", "y", "t", "r", "e", "w", "q", " "];
 
 var countries = [
 	{
@@ -138,30 +137,23 @@ var countries = [
 	}
 ];
 
-var winCount = 0;
+var winCount = -1;
 var lettersGuessed = [];
 var remaining = 9;
-
+var currentWord = [];
+n = 0;
 
 function randomCountry() {
-	currentCountry = countries[math.floor(math.random() * countries.length)].name;
+	currentCountry = countries[Math.floor(Math.random() * countries.length)].name;
 	keys = currentCountry.split("");
-
+	
+	for (var i = 0; i < keys.length; i++) {
+		currentWord.push("_");
+	}
+	document.getElementById("current").innerHTML = currentWord.join(" ");
+	console.log(currentWord);
 }
 
-
-
-
-document.onkeyup = function(event) {
-	userChoice = (event.key).toLowerCase();
-};
-
-
-
-
-function restar()  {
-
-}
 
 function winTracker() {
 	var wins = document.getElementById("wins");
@@ -169,18 +161,43 @@ function winTracker() {
 	wins.innerHTML = winCount; 
 }
 
-function guesses() {
-	var guessesRemaining = document.getElementById("guessesRemaining");
-	remaining--;
-	guessesRemaining.innerHTML = remaining;
-	if (remaining === 3) {
-		alert("3 guesses remaining!");
-	} else if (remaining === 2) {
-		alert("2 more chances!!");
-	} else if (remaining === 1) {
-		alert("Last chance!!!");
-	} else if (remaining === 0) {
-		alert ("You lost");
+document.onkeyup = function(event) {
+
+	userChoice = (event.key).toLowerCase();
+	if (userKey.indexOf(userChoice) !== -1) {
+
+		if (keys.indexOf(userChoice) === -1) {
+			lettersGuessed.push(userChoice);
+			document.getElementById("guessesRemaining").innerHTML = remaining--;
+			if (remaining === 3) {
+				alert("3 guesses remaining!");
+				} else if (remaining === 2) {
+				alert("2 more chances!!");
+				} else if (remaining === 1) {
+				alert("Last chance!!!");
+				} else if (remaining === 0) {
+				alert ("You lost.");
+			}
+			n++;
+			(document.getElementById("myImage")).src = "assets/images/hangman" + n + ".png";
+			document.getElementById("guessedLetters").innerHTML = lettersGuessed;
+
+		} else {
+			for (var i = 0; i < keys.length; i++) {
+				if (userChoice === keys[i]) {
+					currentWord[i] = userChoice; 
+				}
+			document.getElementById("current").innerHTML = currentWord.join(" ");
+			}
+		}
+	}
+	else {
+		alert("That is not a valid key");
 	}
 	
-}
+};
+
+randomCountry();
+winTracker();
+
+// create single function, work on key event
