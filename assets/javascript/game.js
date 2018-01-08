@@ -166,8 +166,45 @@ document.onkeyup = function(event) {
 	userChoice = (event.key).toLowerCase();
 	if (userKey.indexOf(userChoice) !== -1) {
 
-		if (keys.indexOf(userChoice) === -1) {
+		if (keys.indexOf(userChoice) >= 0) {
+			
+			for (var i = 0; i < keys.length; i++) {
+				if (userChoice === keys[i]) {
+					currentWord[i] = userChoice; 
+				}
+			document.getElementById("current").innerHTML = currentWord.join(" ");
+			}	
+
+		} else {
 			lettersGuessed.push(userChoice);
+			document.getElementById("guessesRemaining").innerHTML = remaining--;
+			if (remaining === 3) {
+				alert("3 guesses remaining!");
+				} else if (remaining === 2) {
+				alert("2 more chances!!");
+				} else if (remaining === 1) {
+				alert("Last chance!!!");
+				} else if (remaining === 0) {
+				alert ("You lost. The word was " + currentCountry + ".");
+			}
+			n++;
+			(document.getElementById("myImage")).src = "assets/images/hangman" + n + ".png";
+			document.getElementById("guessedLetters").innerHTML = lettersGuessed;
+		}
+	}
+	else {
+		alert("That is not a valid key");
+	}
+	
+};
+
+randomCountry();
+winTracker();
+
+// create single function, work on key event
+
+
+lettersGuessed.push(userChoice);
 			document.getElementById("guessesRemaining").innerHTML = remaining--;
 			if (remaining === 3) {
 				alert("3 guesses remaining!");
@@ -181,23 +218,3 @@ document.onkeyup = function(event) {
 			n++;
 			(document.getElementById("myImage")).src = "assets/images/hangman" + n + ".png";
 			document.getElementById("guessedLetters").innerHTML = lettersGuessed;
-
-		} else {
-			for (var i = 0; i < keys.length; i++) {
-				if (userChoice === keys[i]) {
-					currentWord[i] = userChoice; 
-				}
-			document.getElementById("current").innerHTML = currentWord.join(" ");
-			}
-		}
-	}
-	else {
-		alert("That is not a valid key");
-	}
-	
-};
-
-randomCountry();
-winTracker();
-
-// create single function, work on key event
