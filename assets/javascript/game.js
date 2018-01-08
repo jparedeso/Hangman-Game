@@ -3,141 +3,141 @@ var userKey = ["m", "n", "b", "v", "c", "x", "z", "a", "s", "d", "f", "g", "h", 
 
 var countries = [
 	{
-		name: "Argentina",
+		name: "argentina",
 		continent: "South America"
 	},
 	
 	{
-		name: "Brazil",
+		name: "brazil",
 		continent: "South America"
 	},
 	
 	{
-		name: "Peru",
+		name: "peru",
 		continent: "South America"
 	},
 
 	{
-		name: "Bolivia",
+		name: "bolivia",
 		continent: "South America"
 	},
 
 	{
-		name: "Colombia",
+		name: "colombia",
 		continent: "South America"
 	},
 
 	{
-		name: "Panama",
+		name: "panama",
 		continent: "Central America"
 	},
 
 	{
-		name: "Costa Rica",
+		name: "costa rica",
 		continent: "Central America"
 	},
 
 	{
-		name: "Nicaragua",
+		name: "nicaragua",
 		continent: "Central America"
 	},
 
 	{
-		name: "El Salvador",
+		name: "el salvador",
 		continent: "Central America"
 	},
 
 	{
-		name: "Guatemala",
+		name: "guatemala",
 		continent: "Central America"
 	},
 
 	{
-		name: "United States of America",
+		name: "united states of america",
 		continent: "North America"
 	},
 
 	{
-		name: "Canada",
+		name: "canada",
 		continent: "North America"
 	},
 
 	{
-		name: "Ghana",
+		name: "ghana",
 		continent: "Africa"
 	},
 
 	{
-		name: "Botswana",
+		name: "botswana",
 		continent: "Africa"
 	},
 
 	{
-		name: "Rwanda",
+		name: "rwanda",
 		continent: "Africa"
 	},
 
 	{
-		name: "Sierra Leone",
+		name: "sierra leone",
 		continent: "Africa"
 	},
 
 	{
-		name: "Zimbabwe",
+		name: "zimbabwe",
 		continent: "Africa"
 	},
 
 	{
-		name: "Afghanistan",
+		name: "afghanistan",
 		continent: "Asia and Oceania"
 	},
 
 	{
-		name: "Japan",
+		name: "japan",
 		continent: "Asia and Oceania"
 	},
 
 	{
-		name: "Thailand",
+		name: "thailand",
 		continent: "Asia and Oceania"
 	},
 
 	{
-		name: "Mongolia",
+		name: "mongolia",
 		continent: "Asia and Oceania"
 	},
 
 	{
-		name: "India",
+		name: "india",
 		continent: "Asia and Oceania"
 	},
 
 	{
-		name: "Belgium",
+		name: "belgium",
 		continent: "Europe"
 	},
 
 	{
-		name: "Croatia",
+		name: "croatia",
 		continent: "Europe"
 	},
 
 	{
-		name: "Germany",
+		name: "germany",
 		continent: "Europe"
 	},
 
 	{
-		name: "Herzegovina",
+		name: "herzegovina",
 		continent: "Europe"
 	},
 	{
-		name: "Switzerland",
+		name: "switzerland",
 		continent: "Europe"
 	}
 ];
 
-var winCount = -1;
+var winCount = -0;
 var lettersGuessed = [];
 var remaining = 9;
 var currentWord = [];
@@ -154,15 +154,9 @@ function randomCountry() {
 	console.log(currentWord);
 }
 
-
-function winTracker() {
-	var wins = document.getElementById("wins");
-	winCount++;
-	wins.innerHTML = winCount; 
-}
-
+randomCountry();
+document.getElementById("wins").innerHTML = winCount;
 document.onkeyup = function(event) {
-
 	userChoice = (event.key).toLowerCase();
 	if (userKey.indexOf(userChoice) !== -1) {
 
@@ -173,6 +167,10 @@ document.onkeyup = function(event) {
 					currentWord[i] = userChoice; 
 				}
 			document.getElementById("current").innerHTML = currentWord.join(" ");
+			if (currentWord.indexOf("_") === -1) {
+				winCount++;
+				document.getElementById("wins").innerHTML = winCount;
+			}
 			}	
 
 		} else {
@@ -197,24 +195,3 @@ document.onkeyup = function(event) {
 	}
 	
 };
-
-randomCountry();
-winTracker();
-
-// create single function, work on key event
-
-
-lettersGuessed.push(userChoice);
-			document.getElementById("guessesRemaining").innerHTML = remaining--;
-			if (remaining === 3) {
-				alert("3 guesses remaining!");
-				} else if (remaining === 2) {
-				alert("2 more chances!!");
-				} else if (remaining === 1) {
-				alert("Last chance!!!");
-				} else if (remaining === 0) {
-				alert ("You lost.");
-			}
-			n++;
-			(document.getElementById("myImage")).src = "assets/images/hangman" + n + ".png";
-			document.getElementById("guessedLetters").innerHTML = lettersGuessed;
