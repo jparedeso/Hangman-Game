@@ -156,6 +156,7 @@ function randomCountry() {
 
 randomCountry();
 document.getElementById("wins").innerHTML = winCount;
+document.getElementById("guessesRemaining").innerHTML = remaining;
 document.onkeyup = function(event) {
 	userChoice = (event.key).toLowerCase();
 	if (userKey.indexOf(userChoice) !== -1) {
@@ -175,7 +176,7 @@ document.onkeyup = function(event) {
 
 		} else {
 			lettersGuessed.push(userChoice);
-			document.getElementById("guessesRemaining").innerHTML = remaining--;
+			document.getElementById("guessesRemaining").innerHTML = (remaining--)-1;
 			if (remaining === 3) {
 				alert("3 guesses remaining!");
 				} else if (remaining === 2) {
@@ -189,6 +190,9 @@ document.onkeyup = function(event) {
 			(document.getElementById("myImage")).src = "assets/images/hangman" + n + ".png";
 			document.getElementById("guessedLetters").innerHTML = lettersGuessed;
 		}
+	if (remaining === 0 || (currentWord.indexOf("_") === -1)) {
+		alert("reset test");
+	}
 	}
 	else {
 		alert("That is not a valid key");
