@@ -175,27 +175,38 @@ document.onkeyup = function(event) {
 			}	
 
 		} else {
-			lettersGuessed.push(userChoice);
-			document.getElementById("guessesRemaining").innerHTML = (remaining--)-1;
-			if (remaining === 3) {
-				alert("3 guesses remaining!");
-				} else if (remaining === 2) {
-				alert("2 more chances!!");
-				} else if (remaining === 1) {
-				alert("Last chance!!!");
-				} else if (remaining === 0) {
-				alert ("You lost. The word was " + currentCountry + ".");
-			}
-			n++;
-			(document.getElementById("myImage")).src = "assets/images/hangman" + n + ".png";
-			document.getElementById("guessedLetters").innerHTML = lettersGuessed;
+			for (var j = 0; j < keys.length; j++) {
+				if (lettersGuessed.indexOf(userChoice) === -1) {
+					lettersGuessed.push(userChoice);
+					document.getElementById("guessesRemaining").innerHTML = (remaining--)-1;
+					if (remaining === 3) {
+						alert("3 guesses remaining!");
+						} else if (remaining === 2) {
+						alert("2 more chances!!");
+						} else if (remaining === 1) {
+						alert("Last chance!!!");
+						} else if (remaining === 0) {
+						alert ("You lost. The word was " + currentCountry + ".");
+					}
+					n++;
+					(document.getElementById("myImage")).src = "assets/images/hangman" + n + ".png";
+					document.getElementById("guessedLetters").innerHTML = lettersGuessed;
+				}	
+			}	
 		}
-	if (remaining === 0 || (currentWord.indexOf("_") === -1)) {
-		alert("reset test");
+
+		if (remaining === 0 || (currentWord.indexOf("_") === -1)) {
+		randomCountry();
+		lettersGuessed = [];
+		remaining = 9;
+		currentWord = [];
+		}
 	}
-	}
+	
 	else {
 		alert("That is not a valid key");
 	}
 	
 };
+
+// terminar reset y que no se repitan las letras adivinadas
