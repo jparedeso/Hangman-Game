@@ -196,10 +196,14 @@ document.onkeyup = function(event) {
 		}
 
 		if (remaining === 0 || (currentWord.indexOf("_") === -1)) {
-		randomCountry();
 		lettersGuessed = [];
+		document.getElementById("guessedLetters").innerHTML = lettersGuessed;
 		remaining = 9;
+		document.getElementById("guessesRemaining").innerHTML = remaining;
 		currentWord = [];
+		randomCountry();
+		n = 0;
+		(document.getElementById("myImage")).src = "assets/images/hangman" + n + ".png";
 		}
 	}
 	
