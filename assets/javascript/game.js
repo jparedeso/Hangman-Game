@@ -159,6 +159,8 @@ var winCount = 0;
 var lettersGuessed = [];
 var remaining = 9;
 var currentWord = [];
+var audioCorrect = $("#myCorrect")[0];
+var audioWrong = $("#myWrong")[0];
 n = 0;
 
 function randomCountry() {
@@ -180,7 +182,7 @@ document.onkeyup = function(event) {
 	if (userKey.indexOf(userChoice) !== -1) {
 
 		if (keys.indexOf(userChoice) >= 0) {
-			
+			audioCorrect.play();
 			for (var i = 0; i < keys.length; i++) {
 				if (userChoice === keys[i]) {
 					currentWord[i] = userChoice; 
@@ -193,6 +195,7 @@ document.onkeyup = function(event) {
 			}	
 
 		} else {
+			audioWrong.play();
 			for (var j = 0; j < keys.length; j++) {
 				if (lettersGuessed.indexOf(userChoice) === -1) {
 					lettersGuessed.push(userChoice);
