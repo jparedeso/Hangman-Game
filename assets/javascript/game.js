@@ -1,4 +1,22 @@
 
+window.onload="myFunction()";
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-full-width",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+};
 var userKey = ["m", "n", "b", "v", "c", "x", "z", "a", "s", "d", "f", "g", "h", "j", "k", "l", "p", "o", "i", "u", "y", "t", "r", "e", "w", "q", " "];
 
 var countries = [
@@ -137,7 +155,7 @@ var countries = [
 	}
 ];
 
-var winCount = -0;
+var winCount = 0;
 var lettersGuessed = [];
 var remaining = 9;
 var currentWord = [];
@@ -180,13 +198,13 @@ document.onkeyup = function(event) {
 					lettersGuessed.push(userChoice);
 					document.getElementById("guessesRemaining").innerHTML = (remaining--)-1;
 					if (remaining === 3) {
-						alert("3 guesses remaining!");
+						toastr["warning"]("3 guesses Remaining!!");
 						} else if (remaining === 2) {
-						alert("2 more chances!!");
+						toastr["warning"]("2 more guesses!!");
 						} else if (remaining === 1) {
-						alert("Last chance!!!");
+						toastr["warning"]("Last guess!!!");
 						} else if (remaining === 0) {
-						alert ("You lost. The word was " + currentCountry + ".");
+						toastr["error"]("You Lost. The word was " + currentCountry);
 					}
 					n++;
 					(document.getElementById("myImage")).src = "assets/images/hangman" + n + ".png";
@@ -196,7 +214,7 @@ document.onkeyup = function(event) {
 		}
 
 		if ((currentWord.indexOf("_") === -1)) {
-			alert("You Won!");
+			Command: toastr["success"]("You Won!");
 		}
 
 		if (remaining === 0 || (currentWord.indexOf("_") === -1)) {
@@ -212,7 +230,7 @@ document.onkeyup = function(event) {
 	}
 	
 	else {
-		alert("That is not a valid key");
+		Command: toastr["error"]("That is not a valid key.");
 	}
 	
 };
