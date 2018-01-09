@@ -195,6 +195,10 @@ document.onkeyup = function(event) {
 			}	
 		}
 
+		if ((currentWord.indexOf("_") === -1)) {
+			alert("You Won!");
+		}
+
 		if (remaining === 0 || (currentWord.indexOf("_") === -1)) {
 		lettersGuessed = [];
 		document.getElementById("guessedLetters").innerHTML = lettersGuessed;
