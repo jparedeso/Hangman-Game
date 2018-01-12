@@ -188,11 +188,11 @@ document.onkeyup = function(event) {
 					currentWord[i] = userChoice; 
 				}
 			document.getElementById("current").innerHTML = currentWord.join(" ");
+			}
 			if (currentWord.indexOf("_") === -1) {
 				winCount++;
 				document.getElementById("wins").innerHTML = winCount;
 			}
-			}	
 
 		} else {
 			audioWrong.play();
